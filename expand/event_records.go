@@ -6,7 +6,7 @@ import (
 	"github.com/JFJun/bifrost-go/expand/bifrost"
 	"github.com/JFJun/bifrost-go/expand/kusama"
 	"github.com/JFJun/bifrost-go/expand/polkadot"
-	"github.com/JFJun/bifrost-go/expand/subgame"
+	"github.com/SubGame-Network/bifrost-go/expand/subgame"
 	"github.com/JFJun/go-substrate-rpc-client/v3/scale"
 	"github.com/JFJun/go-substrate-rpc-client/v3/types"
 	"strings"

@@ -9,7 +9,7 @@ import (
 	"github.com/JFJun/bifrost-go/expand"
 	"github.com/JFJun/bifrost-go/models"
 	"github.com/JFJun/bifrost-go/utils"
-	"github.com/JFJun/go-substrate-crypto/ss58"
+	"github.com/SubGame-Network/go-substrate-crypto/ss58"
 
 	gsrc "github.com/JFJun/go-substrate-rpc-client/v3"
 	gsClient "github.com/JFJun/go-substrate-rpc-client/v3/client"

@@ -5,7 +5,7 @@ import (
 	"github.com/JFJun/bifrost-go/client"
 	"github.com/JFJun/bifrost-go/expand"
 	"github.com/JFJun/bifrost-go/tx"
-	"github.com/JFJun/go-substrate-crypto/crypto"
+	"github.com/SubGame-Network/go-substrate-crypto/crypto"
 	"testing"
 )
 

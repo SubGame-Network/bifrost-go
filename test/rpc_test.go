@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/JFJun/bifrost-go/client"
-	"github.com/JFJun/go-substrate-crypto/ss58"
+	"github.com/SubGame-Network/go-substrate-crypto/ss58"
 	"testing"
 )
 
