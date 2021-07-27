@@ -78,6 +78,43 @@ func Test_Chain2(t *testing.T) {
 	}
 }
 
+func Test_SubGameChain(t *testing.T) {
+	c, err := client.New("wss://mainnet.subgame.org")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	//b := polkadot.PolkadotEventRecords{}
+	b := bifrost.BifrostEventRecords{}
+	existMap := getEventTypesFieldName(b)
+	fmt.Println(c.ChainName)
+	fmt.Println(c.Meta.Version)
+	for _, mod := range c.Meta.AsMetadataV12.Modules {
+		if mod.HasEvents {
+			for _, event := range mod.Events {
+				typeName := fmt.Sprintf("%s_%s", mod.Name, event.Name)
+				if IsExist(typeName, existMap) {
+					continue
+				}
+				fmt.Printf("%s		[]Event%s%s\n", typeName, mod.Name, event.Name)
+				if len(event.Args) == 0 {
+					fmt.Printf("type Event%s%s struct { \n	Phase    types.Phase\n	\n	Topics []types.Hash\n}\n", mod.Name, event.Name)
+				} else {
+					as := ""
+					for _, arg := range event.Args {
+						s := fmt.Sprintf("	%s    types.\n", arg)
+						as = as + s
+					}
+					fmt.Printf("type Event%s%s struct { \n	Phase    types.Phase\n%v	Topics []types.Hash\n}\n", mod.Name, event.Name, as)
+				}
+
+				//fmt.Println(event.Args)
+				fmt.Println("------------------------------------------------")
+			}
+		}
+	}
+}
+
 func Test_New(t *testing.T) {
 	//b := polkadot.PolkadotEventRecords{}
 	////tp:=reflect.TypeOf(b)
@@ -131,20 +168,25 @@ func IsExist(typeName string, existTypes []string) bool {
 }
 
 func Test_GetAllType(t *testing.T) {
-	kList, err := getAllTypes("wss://kusama-rpc.polkadot.io", 13)
+	// kList, err := getAllTypes("wss://kusama-rpc.polkadot.io", 13)
+	// if err != nil {
+	// 	t.Fatal(err)
+	// }
+	pList, err := getAllTypes("wss://rpc.polkadot.io", 12)
 	if err != nil {
 		t.Fatal(err)
 	}
-	pList, err := getAllTypes("wss://rpc.polkadot.io", 12)
+	sList, err := getAllTypes("wss://mainnet.subgame.org", 12)
 	if err != nil {
 		t.Fatal(err)
 	}
 	//fmt.Println(pList)
 	//fmt.Println(kList)
+	//fmt.Println(sList)
 	var sameList []string
 	for _, p := range pList {
 		haveSame := false
-		for _, k := range kList {
+		for _, k := range sList {
 			if p == k {
 				haveSame = true
 				break

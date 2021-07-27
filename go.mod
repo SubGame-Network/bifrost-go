@@ -9,3 +9,5 @@ require (
 	github.com/shopspring/decimal v1.2.0
 	golang.org/x/crypto v0.0.0-20210322153248-0c34fe9e7dc2
 )
+
+replace github.com/JFJun/go-substrate-crypto v1.0.1 => github.com/SubGame-Network/go-substrate-crypto v1.0.2-0.20210727044512-8bb2cf1e53e7
