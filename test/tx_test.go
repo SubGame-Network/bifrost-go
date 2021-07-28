@@ -2,9 +2,9 @@ package test
 
 import (
 	"fmt"
-	"github.com/JFJun/bifrost-go/client"
-	"github.com/JFJun/bifrost-go/expand"
-	"github.com/JFJun/bifrost-go/tx"
+	"github.com/SubGame-Network/bifrost-go/client"
+	"github.com/SubGame-Network/bifrost-go/expand"
+	"github.com/SubGame-Network/bifrost-go/tx"
 	"github.com/SubGame-Network/go-substrate-crypto/crypto"
 	"testing"
 )

@@ -5,7 +5,7 @@
 ### 安裝
 
 ```
-go get -u github.com/SubGame-Network/bifrost-go@vSG1.0.6
+go get -u github.com/SubGame-Network/bifrost-go@vSG1.0.7
 ```
 
 ## 作者說明

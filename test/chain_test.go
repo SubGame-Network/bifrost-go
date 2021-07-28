@@ -2,10 +2,10 @@ package test
 
 import (
 	"fmt"
-	"github.com/JFJun/bifrost-go/client"
-	"github.com/JFJun/bifrost-go/expand"
-	"github.com/JFJun/bifrost-go/expand/base"
-	"github.com/JFJun/bifrost-go/expand/bifrost"
+	"github.com/SubGame-Network/bifrost-go/client"
+	"github.com/SubGame-Network/bifrost-go/expand"
+	"github.com/SubGame-Network/bifrost-go/expand/base"
+	"github.com/SubGame-Network/bifrost-go/expand/bifrost"
 	"github.com/JFJun/go-substrate-rpc-client/v3/types"
 	"reflect"
 	"strings"

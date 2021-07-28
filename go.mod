@@ -3,7 +3,6 @@ module github.com/SubGame-Network/bifrost-go
 go 1.15
 
 require (
-	github.com/JFJun/bifrost-go v1.0.4
 	github.com/JFJun/go-substrate-rpc-client/v3 v3.0.3
 	github.com/SubGame-Network/go-substrate-crypto v1.0.2-0.20210727082917-90735f246360
 	github.com/huandu/xstrings v1.3.2

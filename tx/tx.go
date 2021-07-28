@@ -3,8 +3,8 @@ package tx
 import (
 	"encoding/hex"
 	"fmt"
-	"github.com/JFJun/bifrost-go/expand"
-	"github.com/JFJun/bifrost-go/utils"
+	"github.com/SubGame-Network/bifrost-go/expand"
+	"github.com/SubGame-Network/bifrost-go/utils"
 	"github.com/SubGame-Network/go-substrate-crypto/crypto"
 	"github.com/JFJun/go-substrate-rpc-client/v3/types"
 	"golang.org/x/crypto/blake2b"

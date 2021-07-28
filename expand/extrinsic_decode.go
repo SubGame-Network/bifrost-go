@@ -7,7 +7,7 @@ package expand
 */
 import (
 	"fmt"
-	"github.com/JFJun/bifrost-go/utils"
+	"github.com/SubGame-Network/bifrost-go/utils"
 	"github.com/JFJun/go-substrate-rpc-client/v3/scale"
 	"github.com/JFJun/go-substrate-rpc-client/v3/types"
 	"github.com/huandu/xstrings"
