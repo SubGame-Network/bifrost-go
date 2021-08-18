@@ -1,8 +1,8 @@
 package subgame
 
 import (
-	"github.com/SubGame-Network/bifrost-go/expand/base"
 	"github.com/JFJun/go-substrate-rpc-client/v3/types"
+	"github.com/SubGame-Network/bifrost-go/expand/base"
 )
 
 type SubGameEventRecords struct {
@@ -310,4 +310,72 @@ type Stake_Withdraw struct {
 	From   types.AccountID
 	Amount types.U128
 	Topics []types.Hash
+}
+type Assets_Created struct {
+	AssetId types.U32
+	Owner   types.AccountID
+	Admin   types.AccountID
+}
+type Assets_Issued struct {
+	AssetId     types.U32
+	Beneficiary types.AccountID
+	Amount      types.U64
+}
+type Assets_Transferred struct {
+	AssetId types.U32
+	Origin  types.AccountID
+	Dest    types.AccountID
+	Amount  types.U64
+}
+type Assets_Burned struct {
+	AssetId types.U32
+	Who     types.AccountID
+	Burned  types.U64
+}
+type Assets_TeamChanged struct {
+	AssetId types.U32
+	Issuer  types.AccountID
+	Admin   types.AccountID
+	Freezer types.AccountID
+}
+type Assets_OwnerChanged struct {
+	AssetId types.U32
+	Owner   types.AccountID
+}
+type Assets_ForceTransferred struct {
+	AssetId types.U32
+	source  types.AccountID
+	dest    types.AccountID
+	amount  types.U64
+}
+type Assets_Frozen struct {
+	AssetId types.U32
+	Who     types.AccountID
+}
+type Assets_Thawed struct {
+	AssetId types.U32
+	Who     types.AccountID
+}
+type Assets_AssetFrozen struct {
+	AssetId types.U32
+}
+type Assets_AssetThawed struct {
+	AssetId types.U32
+}
+type Assets_Destroyed struct {
+	AssetId types.U32
+}
+type Assets_ForceCreated struct {
+	AssetId types.U32
+	Owner   types.AccountID
+}
+type Assets_MaxZombiesChanged struct {
+	AssetId    types.U32
+	MaxZombies types.U32
+}
+type Assets_MetadataSet struct {
+	AssetId  types.U32
+	Name     types.Text
+	Symbol   types.Text
+	Decimals types.U8
 }
