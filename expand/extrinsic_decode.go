@@ -274,6 +274,49 @@ func (ed *ExtrinsicDecoder) decodeCallIndex(decoder scale.Decoder) error {
 			ep.Value = result
 			ed.Params = append(ed.Params, ep)
 		}
+	case "SubgameAssets":
+		if callName == "transfer" {
+			// Compact<AssetId>
+			var assetId types.UCompact
+			err = decoder.Decode(&assetId)
+			if err != nil {
+				return fmt.Errorf("decode call: decode SubgameAssets.transfer.Compact<AssetId> error: %v", err)
+			}
+			ed.Params = append(ed.Params,
+				ExtrinsicParam{
+					Name:  "id",
+					Type:  "Compact<AssetId>",
+					Value: utils.UCompactToBigInt(assetId).Int64(),
+				})
+
+			var addrValue string
+			var address MultiAddress
+			err = decoder.Decode(&address)
+			if err != nil {
+				return fmt.Errorf("decode call: decode SubgameAssets.transfer Address error: %v", err)
+			}
+			addrValue = utils.BytesToHex(address.AccountId[:])
+			ed.Params = append(ed.Params,
+				ExtrinsicParam{
+					Name:     "target",
+					Type:     "Address",
+					Value:    addrValue,
+					ValueRaw: addrValue,
+				})
+
+			// Compact<SGAssetBalance>
+			var SGAssetBalance types.UCompact
+			err = decoder.Decode(&SGAssetBalance)
+			if err != nil {
+				return fmt.Errorf("decode call: decode SubgameAssets.transfer.Compact<SGAssetBalance> error: %v", err)
+			}
+			ed.Params = append(ed.Params,
+				ExtrinsicParam{
+					Name:  "value",
+					Type:  "Compact<SGAssetBalance>",
+					Value: utils.UCompactToBigInt(SGAssetBalance).Int64(),
+				})
+		}
 	default:
 		// unsopport
 		return nil

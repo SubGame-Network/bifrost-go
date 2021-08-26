@@ -45,12 +45,30 @@ type SubGameEventRecords struct {
 	Chips_Reserve            []Chips_Reserve
 	Chips_Unreserve          []Chips_Unreserve
 	Chips_RepatriateReserved []Chips_RepatriateReserved
-	Bridge_ReceiveBridge     []Bridge_ReceiveBridge
-	Bridge_Send              []Bridge_Send
-	Stake_SignUp             []Stake_SignUp
-	Stake_Stake              []Stake_Stake
-	Stake_Unlock             []Stake_Unlock
-	Stake_Withdraw           []Stake_Withdraw
+
+	Bridge_ReceiveBridge []Bridge_ReceiveBridge
+	Bridge_Send          []Bridge_Send
+
+	Stake_SignUp   []Stake_SignUp
+	Stake_Stake    []Stake_Stake
+	Stake_Unlock   []Stake_Unlock
+	Stake_Withdraw []Stake_Withdraw
+
+	SubgameAssets_Created           []SubgameAssets_Created
+	SubgameAssets_Issued            []SubgameAssets_Issued
+	SubgameAssets_Transferred       []SubgameAssets_Transferred
+	SubgameAssets_Burned            []SubgameAssets_Burned
+	SubgameAssets_TeamChanged       []SubgameAssets_TeamChanged
+	SubgameAssets_OwnerChanged      []SubgameAssets_OwnerChanged
+	SubgameAssets_ForceTransferred  []SubgameAssets_ForceTransferred
+	SubgameAssets_Frozen            []SubgameAssets_Frozen
+	SubgameAssets_Thawed            []SubgameAssets_Thawed
+	SubgameAssets_AssetFrozen       []SubgameAssets_AssetFrozen
+	SubgameAssets_AssetThawed       []SubgameAssets_AssetThawed
+	SubgameAssets_Destroyed         []SubgameAssets_Destroyed
+	SubgameAssets_ForceCreated      []SubgameAssets_ForceCreated
+	SubgameAssets_MaxZombiesChanged []SubgameAssets_MaxZombiesChanged
+	SubgameAssets_MetadataSet       []SubgameAssets_MetadataSet
 }
 
 type EventElectionProviderMultiPhaseUnsignedPhaseStarted struct {
@@ -311,71 +329,101 @@ type Stake_Withdraw struct {
 	Amount types.U128
 	Topics []types.Hash
 }
-type Assets_Created struct {
+type SubgameAssets_Created struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Owner   types.AccountID
 	Admin   types.AccountID
+	Topics  []types.Hash
 }
-type Assets_Issued struct {
+type SubgameAssets_Issued struct {
+	Phase       types.Phase
 	AssetId     types.U32
 	Beneficiary types.AccountID
 	Amount      types.U64
+	Topics      []types.Hash
 }
-type Assets_Transferred struct {
+type SubgameAssets_Transferred struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Origin  types.AccountID
 	Dest    types.AccountID
 	Amount  types.U64
+	Topics  []types.Hash
 }
-type Assets_Burned struct {
+type SubgameAssets_Burned struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Who     types.AccountID
 	Burned  types.U64
+	Topics  []types.Hash
 }
-type Assets_TeamChanged struct {
+type SubgameAssets_TeamChanged struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Issuer  types.AccountID
 	Admin   types.AccountID
 	Freezer types.AccountID
+	Topics  []types.Hash
 }
-type Assets_OwnerChanged struct {
+type SubgameAssets_OwnerChanged struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Owner   types.AccountID
+	Topics  []types.Hash
 }
-type Assets_ForceTransferred struct {
+type SubgameAssets_ForceTransferred struct {
+	Phase   types.Phase
 	AssetId types.U32
 	source  types.AccountID
 	dest    types.AccountID
 	amount  types.U64
+	Topics  []types.Hash
 }
-type Assets_Frozen struct {
+type SubgameAssets_Frozen struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Who     types.AccountID
+	Topics  []types.Hash
 }
-type Assets_Thawed struct {
+type SubgameAssets_Thawed struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Who     types.AccountID
+	Topics  []types.Hash
 }
-type Assets_AssetFrozen struct {
+type SubgameAssets_AssetFrozen struct {
+	Phase   types.Phase
 	AssetId types.U32
+	Topics  []types.Hash
 }
-type Assets_AssetThawed struct {
+type SubgameAssets_AssetThawed struct {
+	Phase   types.Phase
 	AssetId types.U32
+	Topics  []types.Hash
 }
-type Assets_Destroyed struct {
+type SubgameAssets_Destroyed struct {
+	Phase   types.Phase
 	AssetId types.U32
+	Topics  []types.Hash
 }
-type Assets_ForceCreated struct {
+type SubgameAssets_ForceCreated struct {
+	Phase   types.Phase
 	AssetId types.U32
 	Owner   types.AccountID
+	Topics  []types.Hash
 }
-type Assets_MaxZombiesChanged struct {
+type SubgameAssets_MaxZombiesChanged struct {
+	Phase      types.Phase
 	AssetId    types.U32
 	MaxZombies types.U32
+	Topics     []types.Hash
 }
-type Assets_MetadataSet struct {
+type SubgameAssets_MetadataSet struct {
+	Phase    types.Phase
 	AssetId  types.U32
 	Name     types.Text
 	Symbol   types.Text
 	Decimals types.U8
+	Topics   []types.Hash
 }

@@ -169,9 +169,9 @@ func (c *Client) GetBlockByHash(blockHash string) (*models.BlockResponse, error)
 }
 
 type parseBlockExtrinsicParams struct {
-	from, to, sig, era, txid, fee string
-	nonce                         int64
-	extrinsicIdx, length          int
+	from, to, sig, era, txid, fee, amount, assetid string
+	nonce                                          int64
+	extrinsicIdx, length                           int
 }
 
 /*
@@ -285,6 +285,33 @@ func (c *Client) parseExtrinsicByDecode(extrinsics []string, blockResp *models.B
 					}
 				}
 			}
+
+		case "SubgameAssets":
+			if resp.CallModuleFunction == "transfer" {
+				blockData := parseBlockExtrinsicParams{}
+				blockData.from, _ = ss58.EncodeByPubHex(resp.AccountId, c.prefix)
+				blockData.era = resp.Era
+				blockData.sig = resp.Signature
+				blockData.nonce = resp.Nonce
+				blockData.extrinsicIdx = i
+				blockData.fee, err = c.GetPartialFee(extrinsic, blockResp.ParentHash)
+
+				blockData.txid = c.createTxHash(extrinsic)
+				blockData.length = resp.Length
+				for _, param := range resp.Params {
+					if param.Name == "target" {
+						blockData.to, _ = ss58.EncodeByPubHex(param.Value.(string), c.prefix)
+					}
+					if param.Name == "value" {
+						blockData.amount = fmt.Sprintf("%v", param.Value)
+					}
+					if param.Name == "id" {
+						blockData.assetid = fmt.Sprintf("%v", param.Value)
+					}
+				}
+				params = append(params, blockData)
+			}
+
 		default:
 			//todo  add another call_module 币种不同可能使用的call_module不一样
 			continue
@@ -310,8 +337,9 @@ func (c *Client) parseExtrinsicByDecode(extrinsics []string, blockResp *models.B
 		//e.Txid = txid
 		e.Txid = param.txid
 		e.ExtrinsicLength = param.length
+		e.Amount = param.amount
+		e.AssetId = param.assetid
 		blockResp.Extrinsic[idx] = e
-
 	}
 	//utils.CheckStructData(blockResp)
 	return nil

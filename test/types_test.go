@@ -15,8 +15,8 @@ func Test_SubGameTypes(t *testing.T) {
 		panic(err)
 	}
 
-	c.SetPrefix(ss58.StafiPrefix)
-	resp, err := c.GetBlockByNumber(85611)
+	c.SetPrefix(ss58.SubGamePrefix)
+	resp, err := c.GetBlockByNumber(99099)
 	if err != nil {
 		panic(err)
 	}
