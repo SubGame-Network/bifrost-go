@@ -10,7 +10,7 @@ import (
 
 func Test_SubGameTypes(t *testing.T) {
 	// c, err := client.New("wss://mainnet.subgame.org")
-	c, err := client.New("wss://subgamenode.guanfantech.com")
+	c, err := client.New("wss://staging.subgame.org")
 	if err != nil {
 		panic(err)
 	}

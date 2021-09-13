@@ -7,12 +7,12 @@ import (
 	"github.com/JFJun/go-substrate-rpc-client/v3/signature"
 	gsrpc "github.com/JFJun/go-substrate-rpc-client/v3"
 	"github.com/btcsuite/btcutil/base58"
-	"math/big"
 	"github.com/SubGame-Network/go-substrate-crypto/ss58"
 )
 
 func Test_SubGameAssetTransfer(t *testing.T) {
-	api, err := gsrpc.NewSubstrateAPI("wss://subgamenode.guanfantech.com")
+	// api, err := gsrpc.NewSubstrateAPI("wss://staging.subgame.org")
+	api, err := gsrpc.NewSubstrateAPI("ws://127.0.0.1:9944")
 	if err != nil {
 		panic(err)
 	}
@@ -23,8 +23,11 @@ func Test_SubGameAssetTransfer(t *testing.T) {
 	}
 
 	assetId := types.NewU32(7)
-	toAddress := types.NewAccountID(SubGameAddressDecodeToPubkeyByte("錢包地址"))
-	sendAmount := types.NewUCompact(big.NewInt(1000000))
+
+	// Bob
+	toAddress := types.NewAccountID(SubGameAddressDecodeToPubkeyByte("3kUtmcw4BuQnXChX8wT7QMc6Gz3ax8Sg3iFDumqBnURmvBLL"))
+
+	sendAmount := types.NewU64(100000000)
 	c, err := types.NewCall(meta, "SubgameAssets.transfer", assetId, toAddress, sendAmount)
 	if err != nil {
 		panic(err)
@@ -42,7 +45,9 @@ func Test_SubGameAssetTransfer(t *testing.T) {
 		panic(err)
 	}
 
-	fromAddress := SubGameAddressDecodeToPubkeyByte("錢包地址")
+	// Alice
+	fromAddress := SubGameAddressDecodeToPubkeyByte("3n443h7CKdQggDC2ZsR49hX4Nq4UQfr1YYPYy8xrrTM1h3Wu")
+
 	key, err := types.CreateStorageKey(meta, "System", "Account", fromAddress, nil)
 	if err != nil {
 		panic(err)
@@ -66,7 +71,9 @@ func Test_SubGameAssetTransfer(t *testing.T) {
 		TransactionVersion: rv.TransactionVersion,
 	}
 
-	fromPrivaty := "私鑰or助記詞"
+	// Alice Secret
+	fromPrivaty := "0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a"
+
 	keyringPair, err := signature.KeyringPairFromSecret(fromPrivaty, ss58.SubGamePrefix[0])
 	if err != nil {
 		panic(err)
