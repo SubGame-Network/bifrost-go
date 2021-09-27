@@ -69,6 +69,11 @@ type SubGameEventRecords struct {
 	SubgameAssets_ForceCreated      []SubgameAssets_ForceCreated
 	SubgameAssets_MaxZombiesChanged []SubgameAssets_MaxZombiesChanged
 	SubgameAssets_MetadataSet       []SubgameAssets_MetadataSet
+
+	Swap_CreatePool       []Swap_CreatePool
+	Swap_LiquidityAdded   []Swap_LiquidityAdded
+	Swap_LiquidityRemoved []Swap_LiquidityRemoved
+	Swap_Swap             []Swap_Swap
 }
 
 type EventElectionProviderMultiPhaseUnsignedPhaseStarted struct {
@@ -426,4 +431,43 @@ type SubgameAssets_MetadataSet struct {
 	Symbol   types.Text
 	Decimals types.U8
 	Topics   []types.Hash
+}
+
+type Swap_CreatePool struct {
+	Phase         types.Phase
+	SwapSender    types.AccountID
+	SwapId        types.U32
+	SwapAssetX    types.U32
+	SwapAmountX   types.U64
+	SwapAssetY    types.U32
+	SwapAmountY   types.U64
+	SwapPoolOwner types.AccountID
+	Topics        []types.Hash
+}
+type Swap_LiquidityAdded struct {
+	Phase       types.Phase
+	SwapId      types.U32
+	SwapSender  types.AccountID
+	SwapAmountX types.U64
+	SwapAmountY types.U64
+	Topics      []types.Hash
+}
+type Swap_LiquidityRemoved struct {
+	Phase        types.Phase
+	SwapId       types.U32
+	SwapSender   types.AccountID
+	SwapAmountLP types.U64
+	SwapAmountX  types.U64
+	SwapAmountY  types.U64
+	Topics       []types.Hash
+}
+type Swap_Swap struct {
+	Phase       types.Phase
+	SwapId      types.U32
+	SwapSender  types.AccountID
+	SwapAssetX  types.U32
+	SwapAmountX types.U64
+	SwapAssetY  types.U32
+	SwapAmountY types.U64
+	Topics      []types.Hash
 }
